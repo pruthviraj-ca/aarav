@@ -78,51 +78,6 @@ const About = () => {
             })}
           </div>
         </div>
-
-        {/* Team Section */}
-        <div className="mt-20">
-          <h3 className="text-2xl font-bold text-foreground mb-8 text-center">Leadership Team</h3>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Rajesh Mehta",
-                role: "CEO & Founder",
-                experience: "15+ years in Real Estate",
-                image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&crop=face"
-              },
-              {
-                name: "Priya Kapoor",
-                role: "CTO",
-                experience: "12+ years in FinTech",
-                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face"
-              },
-              {
-                name: "Amit Singh",
-                role: "Head of Investments",
-                experience: "20+ years in Property Investment",
-                image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face"
-              }
-            ].map((member, index) => (
-              <div key={index} className="text-center">
-                <img 
-                  src={member.image}
-                  alt={member.name}
-                  className="w-32 h-32 rounded-full object-cover mx-auto mb-4 shadow-lg"
-                />
-                <h4 className="text-xl font-semibold text-foreground mb-1">
-                  {member.name}
-                </h4>
-                <p className="text-primary font-medium mb-1">
-                  {member.role}
-                </p>
-                <p className="text-muted-foreground text-sm">
-                  {member.experience}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

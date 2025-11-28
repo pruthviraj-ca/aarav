@@ -50,15 +50,26 @@ const InvestorTools = () => {
       case "roi":
         navigate("/roi-calculator");
         break;
-      case "insights":
-        document.getElementById("market-insights")?.scrollIntoView({ behavior: "smooth" });
-        break;
-      case "comparison": {
-        const section = document.getElementById("property-comparison");
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
+      case "insights": {
+        // Check if we're on home page
+        if (window.location.pathname === '/') {
+          document.getElementById("market-insights")?.scrollIntoView({ behavior: "smooth" });
         } else {
-          navigate("/#property-comparison");
+          // Navigate to home and scroll to insights
+          navigate("/", { state: { scrollTo: "market-insights" } });
+        }
+        break;
+      }
+      case "comparison": {
+        // Check if we're on home page
+        if (window.location.pathname === '/') {
+          const section = document.getElementById("property-comparison");
+          if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+          }
+        } else {
+          // Navigate to home and scroll to comparison
+          navigate("/", { state: { scrollTo: "property-comparison" } });
         }
         break;
       }

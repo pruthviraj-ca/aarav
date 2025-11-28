@@ -27,13 +27,13 @@ const FinalCTA = () => {
           
           <p className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed">
             Join thousands of smart investors who are building wealth through fractional real estate ownership. 
-            Start with as little as ₹10,000 and watch your money grow.
+            Start with as little as ₹100,000 and watch your money grow.
           </p>
 
           {/* Key Benefits */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {[
-              { title: "Low Entry", subtitle: "Start from ₹10,000" },
+              { title: "Low Entry", subtitle: "Start from ₹100,000" },
               { title: "High Returns", subtitle: "12%+ Average IRR" },
               { title: "Zero Hassle", subtitle: "Fully Managed" }
             ].map((benefit, index) => (
@@ -75,7 +75,7 @@ const FinalCTA = () => {
           <div className="flex flex-col sm:flex-row gap-8 justify-center items-center text-white/80">
             <div className="flex items-center">
               <Smartphone className="w-5 h-5 mr-2" />
-              <span>+91 98765 43210</span>
+              <span>+91 7483950552</span>
             </div>
             <div className="flex items-center">
               <Mail className="w-5 h-5 mr-2" />

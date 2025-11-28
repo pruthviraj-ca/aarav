@@ -152,10 +152,16 @@ const AdminDashboard = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="text-2xl font-bold text-primary">
-                Tru<span className="text-accent-green">Assets</span>
+              <div className="flex flex-col">
+                <div className="text-2xl font-bold leading-tight">
+                  <span className="text-[#0D4A5F]">Tru</span>
+                  <span className="text-[#14B8A6]">
+                    <span className="logo-a-accent logo-a-accent-header">A</span>
+                    ssets
+                  </span>
+                </div>
+                <span className="text-xs text-muted-foreground">Admin Portal</span>
               </div>
-              <span className="text-sm text-muted-foreground">Admin Portal</span>
             </div>
             <div className="flex items-center space-x-4">
               <Button

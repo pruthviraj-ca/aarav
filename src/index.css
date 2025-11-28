@@ -48,7 +48,7 @@
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(213 94% 68%), hsl(213 100% 45%));
     --gradient-success: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 50%));
-    --gradient-hero: linear-gradient(135deg, hsl(213 100% 45% / 0.95), hsl(213 94% 68% / 0.9));
+    --gradient-hero: linear-gradient(135deg, hsl(213 100% 45% / 0.5), hsl(213 94% 68% / 0.45));
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(215 15% 98%));
     
     /* Shadows */
@@ -147,7 +147,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle at 50% 50%, hsl(213 94% 68% / 0.1) 0%, transparent 50%);
+    background-image: radial-gradient(circle at 50% 50%, hsl(213 94% 68% / 0.05) 0%, transparent 50%);
   }
   
   /* Property Card Styles */
@@ -208,5 +208,34 @@
   /* Container */
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Logo Styling - Special A accent */
+  .logo-a-accent {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .logo-a-accent::before {
+    content: 'A';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    clip-path: polygon(0 0, 0 100%, 35% 100%);
+    pointer-events: none;
+    transform: translateX(-0.5px);
+  }
+  
+  /* Dark teal accent for header (teal green background) */
+  .logo-a-accent-header::before {
+    color: #0D4A5F;
+  }
+  
+  /* White accent for footer (white background) */
+  .logo-a-accent-footer::before {
+    color: rgba(255, 255, 255, 0.8);
   }
 }

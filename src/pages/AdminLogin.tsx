@@ -8,12 +8,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Shield, ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-// Predefined admin credentials
-const ADMIN_CREDENTIALS = {
-  email: 'admin@truassets.com',
-  password: 'Admin@123',
-};
-
 const AdminLogin = () => {
   const navigate = useNavigate();
   const { login, isAuthenticated, isAdmin } = useAuth();
@@ -33,11 +27,17 @@ const AdminLogin = () => {
     e.preventDefault();
     setIsLoading(true);
 
+    // Get admin credentials from environment variables
+    const adminEmail = import.meta.env.VITE_ADMIN_EMAIL || '';
+    const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD || '';
+
     // Simulate API call delay
     setTimeout(() => {
       if (
-        email === ADMIN_CREDENTIALS.email &&
-        password === ADMIN_CREDENTIALS.password
+        adminEmail &&
+        adminPassword &&
+        email === adminEmail &&
+        password === adminPassword
       ) {
         const adminUser = {
           id: 'admin-001',
@@ -55,7 +55,7 @@ const AdminLogin = () => {
       } else {
         toast({
           title: 'Login Failed',
-          description: 'Invalid email or password',
+          description: 'Invalid email or password. Please check your credentials.',
           variant: 'destructive',
         });
       }

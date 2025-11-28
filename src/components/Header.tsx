@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,6 +16,7 @@ import { Menu, X, LogOut, User, Shield } from "lucide-react";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, isAuthenticated, isAdmin, logout } = useAuth();
 
   const navItems = [
@@ -27,12 +28,52 @@ const Header = () => {
     { name: "Contact", href: "#contact", route: null },
   ];
 
+  // Smart navigation handler that works from any page
+  const handleNavigation = (href: string, route: string | null) => {
+    if (route) {
+      // Route navigation (like /services)
+      navigate(route);
+      setIsMenuOpen(false);
+    } else if (href.startsWith('#')) {
+      // Hash link navigation
+      const hash = href.substring(1); // Remove the #
+      
+      // Special case for home - scroll to top
+      if (hash === 'home') {
+        if (location.pathname !== '/') {
+          navigate('/');
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        setIsMenuOpen(false);
+        return;
+      }
+      
+      if (location.pathname !== '/') {
+        // If not on home page, navigate to home first, then scroll
+        navigate('/', { state: { scrollTo: hash } });
+      } else {
+        // Already on home page, just scroll to section
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+      setIsMenuOpen(false);
+    }
+  };
+
   const handleStartInvesting = () => {
     if (isAuthenticated) {
-      document.getElementById('properties')?.scrollIntoView({ behavior: 'smooth' });
+      if (location.pathname !== '/') {
+        navigate('/', { state: { scrollTo: 'properties' } });
+      } else {
+        document.getElementById('properties')?.scrollIntoView({ behavior: 'smooth' });
+      }
     } else {
       navigate('/login');
     }
+    setIsMenuOpen(false);
   };
 
   const handleLogout = () => {
@@ -55,32 +96,38 @@ const Header = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center cursor-pointer" onClick={() => navigate('/')}>
-            <div className="text-2xl font-bold text-primary">
-              Tru<span className="text-accent-green">Assets</span>
+          <div 
+            className="flex flex-col cursor-pointer group" 
+            onClick={() => {
+              if (location.pathname !== '/') {
+                navigate('/');
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+          >
+            <div className="text-2xl md:text-3xl font-bold leading-tight">
+              <span className="text-[#0D4A5F]">Tru</span>
+              <span className="text-[#14B8A6]">
+                <span className="logo-a-accent logo-a-accent-header">A</span>
+                ssets
+              </span>
             </div>
+            <p className="text-[10px] md:text-xs text-[#64748B] font-normal mt-0.5 leading-tight">
+              Elevating Real Estate Experiences
+            </p>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              item.route ? (
-                <button
-                  key={item.name}
-                  onClick={() => navigate(item.route!)}
-                  className="text-foreground hover:text-primary transition-colors font-medium"
-                >
-                  {item.name}
-                </button>
-              ) : (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-foreground hover:text-primary transition-colors font-medium"
-                >
-                  {item.name}
-                </a>
-              )
+              <button
+                key={item.name}
+                onClick={() => handleNavigation(item.href, item.route)}
+                className="text-foreground hover:text-primary transition-colors font-medium"
+              >
+                {item.name}
+              </button>
             ))}
           </nav>
 
@@ -154,27 +201,13 @@ const Header = () => {
           <div className="md:hidden absolute top-16 left-0 right-0 bg-background border-b border-border shadow-lg">
             <nav className="flex flex-col space-y-4 p-6">
               {navItems.map((item) => (
-                item.route ? (
-                  <button
-                    key={item.name}
-                    onClick={() => {
-                      navigate(item.route!);
-                      setIsMenuOpen(false);
-                    }}
-                    className="text-foreground hover:text-primary transition-colors font-medium text-left"
-                  >
-                    {item.name}
-                  </button>
-                ) : (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="text-foreground hover:text-primary transition-colors font-medium"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </a>
-                )
+                <button
+                  key={item.name}
+                  onClick={() => handleNavigation(item.href, item.route)}
+                  className="text-foreground hover:text-primary transition-colors font-medium text-left"
+                >
+                  {item.name}
+                </button>
               ))}
               {isAuthenticated ? (
                 <>

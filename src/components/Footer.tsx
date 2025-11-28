@@ -53,8 +53,17 @@ const Footer = () => {
         <div className="grid lg:grid-cols-6 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <div className="text-3xl font-bold mb-4">
-              Tru<span className="text-accent-green">Assets</span>
+            <div className="mb-4">
+              <div className="text-3xl font-bold leading-tight mb-1">
+                <span className="text-white">Tru</span>
+                <span className="text-[#14B8A6]">
+                  <span className="logo-a-accent logo-a-accent-footer text-white">A</span>
+                  ssets
+                </span>
+              </div>
+              <p className="text-xs text-white/70 font-normal">
+                Elevating Real Estate Experiences
+              </p>
             </div>
             <p className="text-white/80 mb-6 leading-relaxed">
               India's leading fractional real estate investment platform. Democratizing premium property investments for everyone.
@@ -64,7 +73,7 @@ const Footer = () => {
             <div className="space-y-3 mb-6">
               <div className="flex items-center">
                 <Phone className="w-4 h-4 mr-3 text-accent-green" />
-                <span>+91 98765 43210</span>
+                <span>+91 7483950552</span>
               </div>
               <div className="flex items-center">
                 <Mail className="w-4 h-4 mr-3 text-accent-green" />
@@ -73,8 +82,8 @@ const Footer = () => {
               <div className="flex items-start">
                 <MapPin className="w-4 h-4 mr-3 text-accent-green mt-0.5" />
                 <span>
-                  TruAssets Tower, Bandra Kurla Complex,<br />
-                  Mumbai, Maharashtra 400051
+                  JP Nagar 5th Phase, Rose Garden Road,<br />
+                  Esteem Park
                 </span>
               </div>
             </div>

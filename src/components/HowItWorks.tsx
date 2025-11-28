@@ -11,7 +11,7 @@ const HowItWorks = () => {
     {
       icon: Users,
       title: "Invest Fractionally",
-      description: "Purchase fractional ownership starting from ₹10,000. Own a piece of premium real estate with other smart investors.",
+      description: "Purchase fractional ownership starting from ₹100,000. Own a piece of premium real estate with other smart investors.",
       step: "02"
     },
     {

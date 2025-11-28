@@ -42,7 +42,7 @@ const Hero = () => {
           
           <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
             Own premium properties fractionally, earn rental income, and enjoy profits 
-            with complete transparency. Start your investment journey with as little as ₹10,000.
+            with complete transparency. Start your investment journey with as little as ₹100,000.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
